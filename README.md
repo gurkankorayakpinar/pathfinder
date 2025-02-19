@@ -2,7 +2,7 @@
 
 - Bu proje, her turda rastgele bir labirent oluşturan ve mavi karenin, "yön tuşları" kullanılarak kırmızı kareye ulaştırılmaya çalışıldığı bir JavaScript oyunudur.
 
-*
+***
 
 - Mavi kare ve kırmızı kare, her turda rastgele yerlerde oluşurlar.
 
