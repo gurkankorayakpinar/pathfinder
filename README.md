@@ -4,7 +4,7 @@
 
 ***
 
-- Mavi kare ve kırmızı kare, her turda rastgele yerlerde oluşurlar.
+- Mavi kare ve kırmızı kare, her defasında rastgele yerlerde oluşurlar.
 
 - Mavi kare ve kırmızı karenin, duvarların üzerinde oluşmaları engellenmiştir.
 
