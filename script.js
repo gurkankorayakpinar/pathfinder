@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const size = 35;
+const size = 35; // Labirentin boyutu (tek sayı olması gerekir)
 const cellSize = 20; // Karelerin büyüklüğü
 canvas.width = size * cellSize;
 canvas.height = size * cellSize;
@@ -50,7 +50,7 @@ function getRandomEmptyCell() {
     return { x, y };
 }
 
-// Labirentin "çözülebilir" olup olmadığını BFS ile kontrol eden fonksiyon.
+// Labirentin "çözülebilir" olup olmadığını BFS ile kontrol et.
 function isSolvable(start, end) {
     let visited = Array(size).fill().map(() => Array(size).fill(false));
     let queue = [start];
@@ -97,10 +97,12 @@ function movePlayer(dx, dy) {
     let newX = player.x + dx;
     let newY = player.y + dy;
 
+    // Eğer bir sonraki pozisyon duvarsa, o kareye hareket edilemez! (collision detection)
     if (newX >= 0 && newX < size && newY >= 0 && newY < size && maze[newY][newX] === 0) {
         player.x = newX;
         player.y = newY;
 
+        // Oyuncu kırmızı kareye ulaştı mı? (Level atlama kontrolü)
         if (player.x === goal.x && player.y === goal.y) {
             level++;
             document.getElementById("level").textContent = level;
@@ -125,7 +127,7 @@ function startGame() {
         do {
             goal = getRandomEmptyCell();
         } while (goal.x === player.x && goal.y === player.y);
-    } while (!isSolvable(player, goal)); // **Labirent çözülebilir mi kontrol et**
+    } while (!isSolvable(player, goal)); // Labirent çözülebilir mi? Kontrol et.
 
     drawMaze();
 }
