@@ -8,6 +8,8 @@
 
 - Mavi kare ve kırmızı karenin, duvarların üzerinde oluşmaları engellenmiştir.
 
+- Mavi kare ve kırmızı kare arasında sadece bir tane yol vardır.
+
 - Duvarlardan geçişi engellemek için "collision detection" uygulanmıştır.
 
 - Labirentlerin oluşturulmasında DFS (Depth-First Search) algoritması kullanılmıştır.
@@ -17,3 +19,5 @@
 - Generation esnasında hata olmaması için labirent boyutunun "tek sayı" olması gerekmektedir.
 
 - Her çözüm sonrasında bir sonraki seviyeye geçilir.
+
+- Mouse "sağ tık" ile menü açma özelliği devre dışı bırakılmıştır.

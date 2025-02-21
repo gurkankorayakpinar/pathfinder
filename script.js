@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const size = 35; // Labirentin boyutu (tek sayı olması gerekir)
+const size = 21; // Labirentin (kenarlar dâhil) boyutu (tek sayı olması gerekir)
 const cellSize = 20; // Karelerin büyüklüğü
 canvas.width = size * cellSize;
 canvas.height = size * cellSize;
@@ -119,6 +119,18 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") movePlayer(-1, 0);
     if (event.key === "ArrowRight") movePlayer(1, 0);
 });
+
+// "Sağ tık ile menü açma" özelliği devre dışı
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
+
+// Çok büyük labirentlerde, yön tuşları ile sayfa hareketini engellemek için
+window.addEventListener("keydown", function (e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 function startGame() {
     do {
