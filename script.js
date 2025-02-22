@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const size = 21; // Labirentin (kenarlar dâhil) boyutu (tek sayı olması gerekir)
+const size = 39; // Labirentin (kenarlar dâhil) boyutu (tek sayı olması gerekir)
 const cellSize = 20; // Karelerin büyüklüğü
 canvas.width = size * cellSize;
 canvas.height = size * cellSize;
@@ -12,6 +12,16 @@ document.getElementById("level").textContent = level;
 
 function createMaze() {
     let maze = Array(size).fill().map(() => Array(size).fill(1));
+
+    // Kenarları tamamen duvarlarla doldur
+    for (let y = 0; y < size; y++) {
+        maze[y][0] = 1; // Sol kenar
+        maze[y][size - 1] = 1; // Sağ kenar
+    }
+    for (let x = 0; x < size; x++) {
+        maze[0][x] = 1; // Üst kenar
+        maze[size - 1][x] = 1; // Alt kenar
+    }
 
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -27,15 +37,15 @@ function createMaze() {
 
         for (const [dx, dy] of directions) {
             let nx = x + dx, ny = y + dy;
-            if (ny > 0 && ny < size && nx > 0 && nx < size && maze[ny][nx] === 1) {
+            if (ny > 0 && ny < size - 1 && nx > 0 && nx < size - 1 && maze[ny][nx] === 1) {
                 maze[y + dy / 2][x + dx / 2] = 0;
                 carve(nx, ny);
             }
         }
     }
 
-    let startX = 1 + 2 * Math.floor(Math.random() * (size / 2));
-    let startY = 1 + 2 * Math.floor(Math.random() * (size / 2));
+    let startX = 1 + 2 * Math.floor(Math.random() * ((size - 2) / 2));
+    let startY = 1 + 2 * Math.floor(Math.random() * ((size - 2) / 2));
     carve(startX, startY);
 
     return maze;
@@ -44,8 +54,8 @@ function createMaze() {
 function getRandomEmptyCell() {
     let x, y;
     do {
-        x = Math.floor(Math.random() * size);
-        y = Math.floor(Math.random() * size);
+        x = 1 + Math.floor(Math.random() * (size - 2)); // Kenarları hariç tut
+        y = 1 + Math.floor(Math.random() * (size - 2)); // Kenarları hariç tut
     } while (maze[y][x] !== 0);
     return { x, y };
 }
@@ -97,7 +107,7 @@ function movePlayer(dx, dy) {
     let newX = player.x + dx;
     let newY = player.y + dy;
 
-    // Eğer bir sonraki pozisyon duvarsa, o kareye hareket edilemez! (collision detection)
+    // Eğer bir sonraki pozisyon duvarsa veya labirent sınırları dışındaysa, hareket etme
     if (newX >= 0 && newX < size && newY >= 0 && newY < size && maze[newY][newX] === 0) {
         player.x = newX;
         player.y = newY;
