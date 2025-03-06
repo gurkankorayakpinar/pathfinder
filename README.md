@@ -4,21 +4,19 @@
 
 ***
 
-- Mavi kare ve kırmızı kare, rastgele yerlerde oluşurlar.
+- Mavi ve kırmızı kareler, rastgele yerlerde oluşurlar.
 
-- Mavi kare ve kırmızı karenin, kenarlarda ve iç duvarların üzerinde oluşmaları engellenmiştir.
+- Mavi ve kırmızı karelerin, kenarlarda ve iç duvarların üzerinde oluşmaları engellenmiştir.
 
 - Duvarlardan geçişi engellemek amacıyla "collision detection" uygulanmıştır.
-
-- Herhangi iki nokta arasında sadece tek rota vardır.
 
 - Labirentlerin oluşturulmasında DFS (Depth-First Search) algoritması kullanılmıştır.
 
 - Labirentlerin "çözülebilir" nitelikte olup olmadığını kontrol etmek için BFS (Breadth-First Search) algoritması kullanılmıştır. Eğer mavi kareden kırmızı kareye ulaşan bir yol yoksa, yeni bir labirent oluşturulur.
 
-- Labirent boyutu değiştirilebilmektedir.
+- Algoritma gereği, "multiply connected" değil, "simply connected" labirentler oluşur. Bu tip labirentlerde döngü (loop) yoktur, tek rota vardır.
 
-- Generation esnasında hata olmaması için labirent boyutunun "tek sayı" olması gerekmektedir.
+- Labirent boyutu değiştirilebilmektedir. Ancak algoritmada hata olmaması için, kenar uzunluklarının "tek sayı" olması gerekmektedir.
 
 - Her çözüm sonrasında, bir sonraki seviyeye geçilir.
 
