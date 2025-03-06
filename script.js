@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const size = 21; // Labirentin (kenarlar dâhil) boyutu (tek sayı olması gerekir)
+const size = 21; // Kenar uzunluğu (tek sayı olması gerekir)
 const cellSize = 20; // Karelerin büyüklüğü
 canvas.width = size * cellSize;
 canvas.height = size * cellSize;
