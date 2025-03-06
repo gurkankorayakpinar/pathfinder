@@ -14,7 +14,7 @@
 
 - Labirentlerin "çözülebilir" nitelikte olup olmadığını kontrol etmek için BFS (Breadth-First Search) algoritması kullanılmıştır. Eğer mavi kareden kırmızı kareye ulaşan bir yol yoksa, yeni bir labirent oluşturulur.
 
-- Algoritma gereği, "multiply connected" değil, "simply connected" labirentler oluşur. Bu tip labirentlerde döngü (loop) yoktur, tek rota vardır.
+- Algoritma gereği, "multiply connected" değil, "simply connected" labirentler oluşur. Yani, döngü yoktur, tek rota vardır.
 
 - Labirent boyutu değiştirilebilmektedir. Ancak algoritmada hata olmaması için, kenar uzunluklarının "tek sayı" olması gerekmektedir.
 
