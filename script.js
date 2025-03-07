@@ -13,7 +13,7 @@ document.getElementById("level").textContent = level;
 function createMaze() {
     let maze = Array(size).fill().map(() => Array(size).fill(1));
 
-    // Kenarları tamamen duvarlarla doldur
+    // Kenarları tamamen duvarlarla doldur.
     for (let y = 0; y < size; y++) {
         maze[y][0] = 1; // Sol kenar
         maze[y][size - 1] = 1; // Sağ kenar
@@ -54,8 +54,8 @@ function createMaze() {
 function getRandomEmptyCell() {
     let x, y;
     do {
-        x = 1 + Math.floor(Math.random() * (size - 2)); // Kenarları hariç tut
-        y = 1 + Math.floor(Math.random() * (size - 2)); // Kenarları hariç tut
+        x = 1 + Math.floor(Math.random() * (size - 2)); // Kenarlar hariç
+        y = 1 + Math.floor(Math.random() * (size - 2)); // Kenarlar hariç
     } while (maze[y][x] !== 0);
     return { x, y };
 }
@@ -107,12 +107,12 @@ function movePlayer(dx, dy) {
     let newX = player.x + dx;
     let newY = player.y + dy;
 
-    // Eğer bir sonraki pozisyon duvarsa veya labirent sınırları dışındaysa, hareket etme
+    // Eğer bir sonraki pozisyon duvar ise veya labirent sınırları dışındaysa, hareket etme. (collision detection)
     if (newX >= 0 && newX < size && newY >= 0 && newY < size && maze[newY][newX] === 0) {
         player.x = newX;
         player.y = newY;
 
-        // Oyuncu kırmızı kareye ulaştı mı? (Level atlama kontrolü)
+        // Oyuncu kırmızı kareye ulaştı mı? (Level up kontrolü)
         if (player.x === goal.x && player.y === goal.y) {
             level++;
             document.getElementById("level").textContent = level;
@@ -135,7 +135,7 @@ document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
 });
 
-// Çok büyük labirentlerde, yön tuşları ile sayfa hareketini engellemek için
+// Çok büyük labirentlerde, yön tuşları ile sayfa hareketini engelle.
 window.addEventListener("keydown", function (e) {
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
         e.preventDefault();
@@ -149,7 +149,7 @@ function startGame() {
         do {
             goal = getRandomEmptyCell();
         } while (goal.x === player.x && goal.y === player.y);
-    } while (!isSolvable(player, goal)); // Labirent çözülebilir mi? Kontrol et.
+    } while (!isSolvable(player, goal)); // Labirent çözülebilir durumda mı?
 
     drawMaze();
 }
